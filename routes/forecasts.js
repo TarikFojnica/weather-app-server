@@ -12,6 +12,12 @@ router.get('/', function(req, res) {
 });
 
 
+router.get('/past-days/', function(req, res) {
+	forecastIo.forecast(req.query.lat, req.query.lng, req.query.date).then(function(data) {
+		res.json(data);
+	});
+});
+
 /* GET users listing. */
 //router.get('/', function(req, res) {
 //  //Lets configure and request
