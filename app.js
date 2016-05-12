@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var forecasts = require('./routes/forecasts');
 
 var app = express();
 
@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/forecasts', forecasts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -54,6 +54,10 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+});
+
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
 });
 
 
