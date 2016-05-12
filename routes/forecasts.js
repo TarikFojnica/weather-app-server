@@ -9,12 +9,16 @@ router.get('/', function(req, res) {
   request({
     url: 'https://api.forecast.io/forecast/' + api + req.query.lat + ',' + req.query.lng,
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+
   }, function(error, response, body){
     if(error) {
       console.log(error);
     } else {
       console.log(response.statusCode, body);
-      res.json(body);
+      res.json(JSON.parse(body));
     }
   });
 });
@@ -28,7 +32,7 @@ router.get('/past-days/', function(req, res) {
       console.log(error);
     } else {
       console.log(response.statusCode, body);
-      res.json(body);
+      res.json(JSON.parse(body));
     }
   });
 });
