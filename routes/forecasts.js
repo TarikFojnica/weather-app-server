@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var request = require("request");
-var Forecast = require('forecast.io');
 
 var ForecastIo = require('forecastio');
 var forecastIo = new ForecastIo('d8ab77870812de67277ae47d3e9bf83e');
