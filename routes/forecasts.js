@@ -18,6 +18,11 @@ function getLast30Dates(callback) {
 	callback();
 }
 
+router.get('/', function(req, res) {
+	forecastIo.forecast(req.query.lat, req.query.lng).then(function(data) {
+		res.json(data);
+	});
+});
 
 router.get('/past-days/', function(req, res) {
 	getLast30Dates( function(){
@@ -30,13 +35,6 @@ router.get('/past-days/', function(req, res) {
 				res.json(forecasts);
 			}
 		}
-	});
-});
-
-router.get('/', function(req, res) {
-	getLast30Dates();
-	forecastIo.forecast(req.query.lat, req.query.lng).then(function(data) {
-		res.json(data);
 	});
 });
 
