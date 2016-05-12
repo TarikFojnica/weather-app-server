@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
     url: 'https://api.forecast.io/forecast/' + api + req.query.lat + ',' + req.query.lng,
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     }
 
   }, function(error, response, body){
