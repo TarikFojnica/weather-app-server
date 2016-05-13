@@ -14,9 +14,6 @@ var forecasts = [];
 
 
 router.get('/', function(req, res) {
-	//forecastIo.forecast(req.query.lat, req.query.lng).then(function(data) {
-	//	res.json(data);
-	//});
 
 	forecast.fetch(req.query.lat, req.query.lng)
 		.then(function(data) {
