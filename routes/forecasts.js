@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var moment = require('moment');
-//var ForecastIo = require('forecastio');
-//var forecastIo = new ForecastIo('d8ab77870812de67277ae47d3e9bf83e');
+
 
 var Forecast = require('forecast.io-bluebird');
 var forecast = new Forecast({
