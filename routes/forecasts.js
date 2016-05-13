@@ -12,7 +12,6 @@ var forecast = new Forecast({
 var last30Dates = [];
 var forecasts = [];
 
-
 router.get('/', function(req, res) {
 
 	forecast.fetch(req.query.lat, req.query.lng)
@@ -24,17 +23,17 @@ router.get('/', function(req, res) {
 		});
 });
 
-
+// Get the dates of the last 30 days by taking the advantage of Moment.js library.
+// After the date is received convert it into a Unix format and store in the
+// 'last30Dates' array
 function getAllDates(cb) {
 	for (var i = 0; i <= 30; i++) {
-		//taking unix time of each day in the last 30 days and storing it in the 'last30Dates' array
 		last30Dates.push(Math.floor((moment().subtract(i, 'days')) / 1000));
 	}
 	cb();
 }
 
 function getAllForecasts(lat, lng, cb) {
-
 	last30Dates.forEach( function(entry) {
 		forecast.fetch(lat, lng, entry)
 			.then(function(data) {
@@ -52,6 +51,8 @@ router.get('/past-days/', function(req, res) {
 	getAllDates( function() {
 		getAllForecasts(req.query.lat, req.query.lng, function() {
 			res.json(forecasts);
+
+			//reset the data after it's been sent
 			forecasts = [];
 			last30Dates = [];
 		})
